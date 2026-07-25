@@ -1,33 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Phone, CheckCircle, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const PHONE_NUMBER = "0932912020";
 const PHONE_HREF = "tel:0932912020";
 
+const motorcycleImages = Array.from(
+  { length: 10 },
+  (_, i) => `/motorcycles/bike${i + 1}.jpg`
+);
+
 export default function HeroSection() {
+  const [currentImg, setCurrentImg] = useState(0);
+
+  // Auto-cycle through motorcycle images every 3.5s
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImg((prev) => (prev + 1) % motorcycleImages.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background slideshow from motorcycle images */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero/hero.jpg"
-          alt="ዘላለም ይበልጣል የሞተርሳይክል ሽያጭ"
-          fill
-          priority
-          className="object-cover"
-          quality={90}
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
-        {/* Blue accent overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/40 via-transparent to-blue-800/20" />
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={currentImg}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          >
+            <Image
+              src={motorcycleImages[currentImg]}
+              alt={`Motorcycle ${currentImg + 1}`}
+              fill
+              priority={currentImg === 0}
+              className="object-cover"
+              quality={90}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/80 z-10" />
+        {/* Blue accent */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/35 via-transparent to-transparent z-10" />
+      </div>
+
+      {/* Slide dots indicator */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {motorcycleImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentImg(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === currentImg
+                ? "w-6 h-2 bg-white"
+                : "w-2 h-2 bg-white/40 hover:bg-white/70"
+            }`}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
       </div>
 
       {/* Animated background orbs */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute w-96 h-96 rounded-full bg-blue-600/10 blur-3xl"
           animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
@@ -43,31 +87,13 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 py-20 max-w-4xl mx-auto">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex justify-center mb-6"
-        >
-          <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm bg-white/10">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
-
+      <div className="relative z-20 text-center px-4 py-20 max-w-4xl mx-auto">
         {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 drop-shadow-lg"
+          className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 drop-shadow-lg"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           🏍️ ዘላለም ይበልጣል
@@ -75,7 +101,7 @@ export default function HeroSection() {
           <span className="text-blue-300">የሞተርሳይክል ሽያጭ</span>
         </motion.h1>
 
-        {/* Subtitle Feature List */}
+        {/* Feature list */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -110,11 +136,10 @@ export default function HeroSection() {
         >
           ከ <strong className="text-yellow-300">65,000 ብር</strong> እስከ{" "}
           <strong className="text-yellow-300">90,000 ብር</strong> ድረስ 100% አዲስ
-          የሞተርሳይክል ሞዴሎች በተመጣጣኝ ዋጋ ያገኛሉ። ዛሬውኑ ይደውሉን እና የሚፈልጉትን ሞተርሳይክል
-          ያስይዙ።
+          የሞተርሳይክል ሞዴሎች በተመጣጣኝ ዋጋ ያገኛሉ። ዛሬውኑ ይደውሉን።
         </motion.p>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -131,7 +156,6 @@ export default function HeroSection() {
             📞 አሁኑኑ ይደውሉ
           </motion.a>
 
-          {/* Phone number display */}
           <motion.a
             href={PHONE_HREF}
             className="flex items-center gap-2 text-white/90 text-xl md:text-2xl font-bold tracking-wider hover:text-green-400 transition-colors duration-200"
@@ -163,7 +187,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       >
