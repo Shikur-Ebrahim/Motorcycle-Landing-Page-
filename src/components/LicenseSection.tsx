@@ -48,20 +48,16 @@ export default function LicenseSection() {
           <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-3xl blur-sm opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
 
           <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-100">
-            {/* Top header bar */}
-            <div className="bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-4 flex items-center gap-3">
-              <Award className="w-6 h-6 text-white" />
-              <span className="text-white font-bold text-lg">ህጋዊ የንግድ ፍቃድ</span>
-              <span className="ml-auto text-white/80 text-sm">ዘላለም ይበልጣል የሞተርሳይክል ሽያጭ</span>
-            </div>
+
 
             {/* Image */}
-            <div className="relative aspect-[3/4] md:aspect-[4/5] w-full bg-slate-50">
+            <div className="relative w-full bg-slate-50 flex items-center justify-center p-2 md:p-4">
               <Image
                 src="/license/license.jpg"
                 alt="Business License - የንግድ ፍቃድ"
-                fill
-                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                width={800}
+                height={1131}
+                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 672px"
                 loading="lazy"
               />
