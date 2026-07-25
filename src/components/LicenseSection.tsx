@@ -56,12 +56,12 @@ export default function LicenseSection() {
             </div>
 
             {/* Image */}
-            <div className="relative aspect-[4/3] w-full">
+            <div className="relative aspect-[3/4] md:aspect-[4/5] w-full bg-slate-50">
               <Image
                 src="/license/license.jpg"
                 alt="Business License - የንግድ ፍቃድ"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 672px"
                 loading="lazy"
               />

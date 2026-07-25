@@ -31,10 +31,7 @@ export default function MotorcyclesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-            ዋና ሞዴሎች
-          </div>
+
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
             🏍️ ዘላለም ይበልጣል የሞተርሳይክል ሽያጭ
           </h2>
