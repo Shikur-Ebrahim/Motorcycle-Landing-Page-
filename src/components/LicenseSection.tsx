@@ -22,10 +22,7 @@ export default function LicenseSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            <Award className="w-4 h-4" />
-            ህጋዊ ፍቃድ
-          </div>
+
           <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
             📄 የንግድ ፍቃድ
           </h2>
@@ -51,14 +48,11 @@ export default function LicenseSection() {
 
 
             {/* Image */}
-            <div className="relative w-full bg-slate-50 flex items-center justify-center p-2 md:p-4">
-              <Image
+            <div className="relative w-full bg-slate-50 flex items-center justify-center p-2 md:p-4 overflow-hidden">
+              <img
                 src="/license/license.jpg"
                 alt="Business License - የንግድ ፍቃድ"
-                width={800}
-                height={1131}
-                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 672px"
+                className="w-full h-auto max-h-[85vh] object-contain transition-transform duration-500 group-hover:scale-105 shadow-sm"
                 loading="lazy"
               />
               {/* Hover overlay */}
