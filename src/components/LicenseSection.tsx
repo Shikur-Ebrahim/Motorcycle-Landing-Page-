@@ -1,15 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { Award, ZoomIn } from "lucide-react";
-import Lightbox from "./Lightbox";
-
-const licenseImage = ["/license/license.jpg"];
+import { motion } from "framer-motion";
+import { Award } from "lucide-react";
 
 export default function LicenseSection() {
-  const [showLightbox, setShowLightbox] = useState(false);
 
   return (
     <section className="section-padding bg-white" id="license">
@@ -38,8 +32,7 @@ export default function LicenseSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative mx-auto max-w-2xl cursor-pointer group"
-          onClick={() => setShowLightbox(true)}
+          className="relative mx-auto max-w-2xl"
         >
           {/* Decorative border */}
           <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-3xl blur-sm opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
@@ -52,15 +45,9 @@ export default function LicenseSection() {
               <img
                 src="/license/license.jpg"
                 alt="Business License - የንግድ ፍቃድ"
-                className="w-full h-auto max-h-[85vh] object-contain transition-transform duration-500 group-hover:scale-105 shadow-sm"
+                className="w-full h-auto max-h-[85vh] object-contain shadow-sm rounded-lg"
                 loading="lazy"
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/40">
-                  <ZoomIn className="w-8 h-8 text-white" />
-                </div>
-              </div>
             </div>
 
             {/* Bottom badge */}
@@ -73,29 +60,7 @@ export default function LicenseSection() {
           </div>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center text-gray-400 text-sm mt-4 flex items-center justify-center gap-1"
-        >
-          <ZoomIn className="w-4 h-4" />
-          ምስሉን ለማስፋት ጠቅ ያድርጉ
-        </motion.p>
       </div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {showLightbox && (
-          <Lightbox
-            images={licenseImage}
-            initialIndex={0}
-            onClose={() => setShowLightbox(false)}
-            altPrefix="License"
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 }
