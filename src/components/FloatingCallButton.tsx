@@ -37,7 +37,7 @@ export default function FloatingCallButton() {
           animate={{ rotate: [0, 15, -15, 10, -10, 0] }}
           transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
         >
-          <Phone className="w-6 h-6 fill-white" />
+          <Phone className="w-8 h-8 fill-white" />
         </motion.div>
         <span className="hidden md:inline text-sm font-bold">ይደውሉ</span>
       </motion.a>

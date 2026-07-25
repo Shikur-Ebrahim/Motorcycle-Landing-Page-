@@ -36,7 +36,7 @@ export default function MotorcyclesSection() {
             ዋና ሞዴሎች
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
-            🏍️ ዋና የሞተርሳይክል ሞዴሎች
+            🏍️ ዘላለም ይበልጣል የሞተርሳይክል ሽያጭ
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
             ምርጥ የሞተርሳይክል ሞዴሎቻችን ይመልከቱ። ሁሉም 100% አዲስ ናቸው።
