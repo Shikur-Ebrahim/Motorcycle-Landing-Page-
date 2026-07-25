@@ -1,4 +1,3 @@
-import HeroSection from "@/components/HeroSection";
 import MotorcyclesSection from "@/components/MotorcyclesSection";
 import GallerySection from "@/components/GallerySection";
 import LicenseSection from "@/components/LicenseSection";
@@ -10,9 +9,6 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* SECTION 1: Hero */}
-      <HeroSection />
-
       {/* SECTION 2: Main Motorcycle Models */}
       <MotorcyclesSection />
 
